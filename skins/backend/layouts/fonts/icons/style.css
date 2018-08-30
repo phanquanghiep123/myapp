@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('icomoon.eot?lo6r98');
+  src:  url('icomoon.eot?lo6r98#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?lo6r98') format('truetype'),
+    url('icomoon.woff?lo6r98') format('woff'),
+    url('icomoon.svg?lo6r98#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sleep .path1:before {
+  content: "\e900";
+  color: rgb(0, 0, 0);
+}
+.icon-sleep .path2:before {
+  content: "\e901";
+  margin-left: -1em;
+  color: rgb(94, 97, 99);
+}
+.icon-alarm:before {
+  content: "\e902";
+}
+.icon-calendar:before {
+  content: "\e903";
+}
+.icon-clock .path1:before {
+  content: "\e904";
+  color: rgb(231, 236, 236);
+}
+.icon-clock .path2:before {
+  content: "\e905";
+  margin-left: -1em;
+  color: rgb(103, 103, 103);
+}
+.icon-clock .path3:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path4:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path5:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path6:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path7:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path8:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path9:before {
+  content: "\e90c";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-clock .path10:before {
+  content: "\e90d";
+  margin-left: -1em;
+  color: rgb(116, 132, 191);
+}
+.icon-info:before {
+  content: "\e90e";
+}
+.icon-jail:before {
+  content: "\e90f";
+}
+.icon-list:before {
+  content: "\e910";
+}
+.icon-magnifying-glass:before {
+  content: "\e911";
+}
+.icon-policeman:before {
+  content: "\e912";
+}
+.icon-police-shield:before {
+  content: "\e913";
+}
+.icon-settings:before {
+  content: "\e914";
+}
+.icon-share:before {
+  content: "\e915";
+}

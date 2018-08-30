@@ -1,0 +1,9 @@
+@section("header")
+	@include("$_SEFF->_FOLDER_FIX.layouts.header")
+@show
+@section("wrapper")
+	@include("$_SEFF->_FOLDER_FIX.layouts.main")
+@show	
+@section("footer")
+	@include("$_SEFF->_FOLDER_FIX.layouts.footer")
+@show	

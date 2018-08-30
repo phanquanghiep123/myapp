@@ -1,0 +1,12 @@
+#view-file{
+  position: absolute;
+  right: 10px;
+  top: 12px;
+}
+#m_modal_1 .modal-body {
+	text-align: center;
+}
+.form-line{position: relative;}
+#detail-photo{
+  max-width: 100%;
+}
