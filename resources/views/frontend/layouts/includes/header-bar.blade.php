@@ -17,11 +17,12 @@
             <li class="item-avatar vcard">
                 <a href="#">
                     <div class="vcard-content"><span class="text-primary">Welcome</span> {{@$use->first_name}} {{@$use->last_name}}</div>
-                    <div class="vcard-img"><img src="{{asset(@$use->photo)}}"></div>
+                    @if(@$use)<div class="vcard-img"><img src="{{asset(@$use->photo)}}"></div>@endif
                 </a>
             </li>
             <li class="item-notification"><a href="#"><span class="icon icon-alarm"></span></a></li>
             <li class="item-share"><a href="#"><span class="icon icon-share"></span></a></li>
+            @if(@$use)
             <li class="item-setting">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="icon icon-settings"></span>
@@ -34,6 +35,9 @@
                     <a href="{{route($_SEFF->_ROUTE_FIX.'.logout')}}" class="dropdown-item" href="#">Logout</a>
                 </div>
             </li>
+            @else
+            <li class="item-setting"><a class="dropdown-item" href="{{route($_SEFF->_ROUTE_FIX.'.getlogin')}}">Log in</a></li>
+            @endif
         </ul>
     </div>
 </div>

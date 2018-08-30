@@ -243,23 +243,28 @@ Route::group(['middleware' => $groupFolder ,'prefix' => $fixname],function() use
                 "name"   => ".destroy"
             ]
         ];
-        $modules = \DB::table("modules")->where([["status","=",1],["is_sys" ,"=" ,1]])->get();
-        if($modules){
-             foreach ($modules as $key => $value) {
-                $urllist        = $value->route;
-                $strController  = strtoupper( substr( $urllist, 0, 1 ) ).substr( $urllist, 1 );
-                $strController  = $strController."Controller";
-                foreach ($routes as $key_route => $value_route) {
-                    $controller      = $groupFolder.'\\'.$strController."@".$value_route['action'];
-                    $backendRoutes [] = [
-                        "url"       => $urllist  ."/". $value_route["url"],
-                        "controller" => $controller,
-                        "name"      => $fixname."." .$urllist . $value_route["name"],
-                        "type"      => $value_route["type"]
-                    ];
-                }     
+        try {
+            $modules = \DB::table("modules")->where([["status","=",1],["is_sys" ,"=" ,1]])->get();
+            if($modules){
+                 foreach ($modules as $key => $value) {
+                    $urllist        = $value->route;
+                    $strController  = strtoupper( substr( $urllist, 0, 1 ) ).substr( $urllist, 1 );
+                    $strController  = $strController."Controller";
+                    foreach ($routes as $key_route => $value_route) {
+                        $controller      = $groupFolder.'\\'.$strController."@".$value_route['action'];
+                        $backendRoutes [] = [
+                            "url"       => $urllist  ."/". $value_route["url"],
+                            "controller" => $controller,
+                            "name"      => $fixname."." .$urllist . $value_route["name"],
+                            "type"      => $value_route["type"]
+                        ];
+                    }     
+                }
             }
+        } catch (Exception $e) {
+            
         }
+        
     }
     foreach ($backendRoutes as $key => $value) {
         Route::{$value["type"]}($value["url"],$value["controller"])->name($value["name"]);
@@ -347,33 +352,38 @@ Route::group(['middleware' => $groupFolder ],function() use($DB_DATABASE,$DB_USE
         ]
     ];
     if($DB_DATABASE && $DB_USERNAME){
-        $modules = \DB::table("modules")->where([["status","=",1],["is_sys" ,"=" ,0]])->get();
-        if($modules){
-            foreach ($modules as $key => $value) {
-                $urllist        = $value->route;
-                $strController  = strtoupper( substr( $urllist, 0, 1 ) ).substr( $urllist, 1 );
-                $strController  = $strController."Controller";
-                foreach ($routes as $key_route => $value_route) {
-                    $controller      = $groupFolder.'\\'.$strController."@".$value_route['action'];
-                    $frontendRoutes [] = [
-                        "url"       => $urllist  ."/". $value_route["url"],
-                        "controller" => $controller,
-                        "name"      => $fixname."." .$urllist . $value_route["name"],
-                        "type"      => $value_route["type"]
-                    ];
-                }  
+        try {
+            $modules = \DB::table("modules")->where([["status","=",1],["is_sys" ,"=" ,0]])->get();
+            if($modules){
+                foreach ($modules as $key => $value) {
+                    $urllist        = $value->route;
+                    $strController  = strtoupper( substr( $urllist, 0, 1 ) ).substr( $urllist, 1 );
+                    $strController  = $strController."Controller";
+                    foreach ($routes as $key_route => $value_route) {
+                        $controller      = $groupFolder.'\\'.$strController."@".$value_route['action'];
+                        $frontendRoutes [] = [
+                            "url"       => $urllist  ."/". $value_route["url"],
+                            "controller" => $controller,
+                            "name"      => $fixname."." .$urllist . $value_route["name"],
+                            "type"      => $value_route["type"]
+                        ];
+                    }  
+                }
             }
+            $memu_items = \DB::table("menu_items")->join("menus","menus.id","=","menu_items.menu_id")->where([["menu_items.status","=",1],["menus.type" ,"=" ,0]])->get();
+            foreach ($memu_items as $key => $value) {
+                $controller      = $value->controller."@".$value->action;
+                $frontendRoutes [] = [
+                    "url"       => $value->path,
+                    "controller" => $controller,
+                    "name"      => $value->route_name,
+                    "type"      => $value->method
+                ];
+            }
+        } catch (Exception $e) {
+            
         }
-        $memu_items = \DB::table("menu_items")->join("menus","menus.id","=","menu_items.menu_id")->where([["menu_items.status","=",1],["menus.type" ,"=" ,0]])->get();
-        foreach ($memu_items as $key => $value) {
-            $controller      = $value->controller."@".$value->action;
-            $frontendRoutes [] = [
-                "url"       => $value->path,
-                "controller" => $controller,
-                "name"      => $value->route_name,
-                "type"      => $value->method
-            ];
-        }
+        
     }
     foreach ($frontendRoutes as $key => $value) {
       Route::{$value["type"]}($value["url"],$value["controller"])->name($value["name"]);
